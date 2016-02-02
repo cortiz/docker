@@ -5,10 +5,10 @@ MAINTAINER Carlos Ortiz<carlos.ortiz@craftercms.org>
 ENV DATA_DB_PATH=$CRAFTER_HOME/data/db
 ENV DATA_REPO_PATH=$CRAFTER_HOME/data/repo
 
-ENV CRAFTER_VERSION=2.5.0
+ENV CRAFTER_VERSION=LATEST
 ENV SOLR_VERSION=4.10.4
-ENV MAVEN_REPO_URL=http://repository.sonatype.org/
-ENV MAVEN_REPO=central-proxy
+ENV MAVEN_REPO_URL=https://oss.sonatype.org
+ENV MAVEN_REPO=snapshots
 ENV DEPLOYER_HOME=$CRAFTER_HOME/deployer
 #Change dir to CRAFTER_HOME
 
@@ -25,8 +25,7 @@ ADD ./studio-conf/engine/services-context.xml /opt/craftercms/apache-tomcat/shar
 ADD ./studio-conf/solr-crafter.xml /opt/craftercms/apache-tomcat/conf/Catalina/localhost/
 
 #TODO Make this the proper ZIP file on next RELEASE
-ADD "http://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=org.craftercms&a=crafter-studio-publishing-receiver-zip&v=LATEST&p=zip" deployer.zip
-
+ADD "$MAVEN_REPO_URL/service/local/artifact/maven/redirect?r=$MAVEN_REPO&g=org.craftercms&a=crafter-studio-publishing-receiver-zip&v=$CRAFTER_VERSION&p=zip" deployer.zip
 ADD "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=commons-daemon&a=commons-daemon&v=1.0.15" $DEPLOYER_HOME/commons-daemon.jar
 RUN unzip deployer.zip -d $DEPLOYER_HOME
 RUN rm deployer.zip
