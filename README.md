@@ -1,2 +1,1 @@
-# docker
-Crafter in Docker.
+Docker files for CrafterCMS
