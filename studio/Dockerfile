@@ -48,6 +48,6 @@ VOLUME ${CRAFTER_HOME}/deployer/conf
 VOLUME ${CRAFTER_HOME}/deployer/target
 
 WORKDIR ${CRAFTER_HOME}
-ADD ./studio-conf/runStudio.sh .
+ADD ./studio-conf/runStudio.sh ${CRAFTER_HOME}/runStudio.sh
 #StartTomcat!!:
 CMD ["./runStudio.sh"]
