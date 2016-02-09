@@ -7,5 +7,7 @@ else
 fi
 echo "Building tomcatbase"
 docker build -t craftercms/tomcatbase:$DOCKER_TAG tomcatbase
-echo "Building Studio"
-docker build -t craftercms/studio:$DOCKER_TAG studio
+echo "Building Developer Docker"
+docker build -t craftercms/dev-full:$DOCKER_TAG dev-full
+echo "Building Authoring Prd"
+docker build -t craftercms/prod-authoring:$DOCKER_TAG prod-authoring
