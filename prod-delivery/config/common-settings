@@ -1,0 +1,60 @@
+LogLevel warn
+ CustomLog /dev/null common
+ ErrorLog /opt/craftercms/logs/cractercms-apache-delivery.log
+ ModPagespeed off
+ ErrorDocument 500 /static-assets/error-pages/500.html
+ ErrorDocument 503 /static-assets/error-pages/503.html
+Options -Indexes
+ <Location />
+         # Insert filter
+         SetOutputFilter DEFLATE
+         # Don't compress images
+         SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|mp4|mp4v|zip|mov|3gp)$ no-gzip dont-vary
+ </Location>
+ # Restrict location /solr-crafter
+ <Location /solr-crafter>
+         Order Deny,Allow
+         Deny from all
+         Allow from 127.0.0.1
+ </Location>
+ # Set global mime types
+ TypesConfig /etc/mime.types
+ # set the right mime-type for mpg4 videos and fonts
+ AddType video/mp4 .mp4 .mpg4
+ AddType video/x-m4v .m4v .mp4v
+ AddType audio/3gpp .3gp .3gpp
+ AddType video/3gpp .3gp .3gpp
+ AddType video/quicktime .mov
+ AddType application/vnd.ms-fontobject .eot
+ AddType application/octet-stream .otf .ttf
+
+ # Expires headers for static assets
+ ExpiresActive On
+ ExpiresDefault "access plus 1 day"
+ ExpiresByType image/jpg "access plus 1 week"
+ ExpiresByType image/png "access plus 1 week"
+ ExpiresByType image/gif "access plus 1 week"
+ ExpiresByType image/swf "access plus 1 week"
+ ExpiresByType image/swf "access plus 1 week"
+ ExpiresByType video/quicktime "access plus 1 week"
+ ExpiresByType video/3gpp "access plus 1 week"
+ ExpiresByType audio/3gpp "access plus 1 week"
+ ExpiresByType video/mp4 "access plus 1 week"
+ ExpiresByType video/x-m4v "access plus 1 week"
+ ExpiresByType text/html "access plus 0 seconds"
+ ExpiresByType application/json "access plus 0 seconds"
+ ExpiresByType text/css "access plus 1 hour"
+ ExpiresByType text/javascript "access plus 1 hour"
+ ExpiresByType application/javascript "access plus 1 hour"
+ <Proxy *>
+         Order allow,deny
+         Allow from all
+ </Proxy>
+ RewriteEngine On
+# Rules against Cross-Site Scripting (XSS) attack
+ RewriteOptions Inherit
+ RewriteCond %{QUERY_STRING} "(<|%3C|&lt;)script" [NC]
+ RewriteRule . - [F]
+RewriteRule ^/sitemap$  /api/1/services/site-map.xml    [P]
+RewriteRule /robots.txt /static-assets/robots/live.txt [P]
+RewriteRule ^/crossdomain.xml$  /static-assets/webmaster/crossdomain.xml        [P]

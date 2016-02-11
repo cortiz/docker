@@ -8,7 +8,7 @@ ENV CRAFTER_HOME=/opt/craftercms
 ENV CATALINA_HOME=/opt/craftercms/apache-tomcat
 ENV CRAFTER_CMS_DEPLOY_HOME=/opt/craftercms/deployer
 ENV TOMCAT_MAJOR=8
-ENV TOMCAT_VERSION=8.0.30
+ENV TOMCAT_VERSION=8.0.32
 #Configure & Install Java (also updates)
 RUN echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' >> /etc/apt/sources.list && \
     echo 'deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' >> /etc/apt/sources.list && \
@@ -28,8 +28,7 @@ RUN mkdir -p "$CRAFTER_CMS_DEPLOY_HOME"
 #Change dir to CRAFTER_HOME
 WORKDIR ${CATALINA_HOME}
 #Get Tomcat
-ENV TOMCAT_URL=https://www.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
-RUN curl -fSLk "${TOMCAT_URL}" -o tomcat.tar.gz
+ADD https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz ./tomcat.tar.gz
 RUN tar -xvf tomcat.tar.gz
 RUN mv apache-tomcat-${TOMCAT_VERSION}/* .
 RUN rm -rf apache-tomcat-${TOMCAT_VERSION}
@@ -38,7 +37,6 @@ RUN echo "shared.loader=\${catalina.base}/shared/classes,\${catalina.base}/share
 RUN mkdir -p shared/classes
 RUN mkdir -p shared/lib
 RUN rm -rvf ${CATALINA_HOME}/webapps/*
-VOLUME "$CATALINA_HOME/webapps"
 
 #Expose Tomcat ports
 EXPOSE 8080

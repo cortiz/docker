@@ -6,8 +6,10 @@ else
     DOCKER_TAG=$BRANCH
 fi
 echo "Building tomcatbase"
-docker build -t craftercms/tomcatbase:$DOCKER_TAG tomcatbase
+docker build --no-cache=true -t craftercms/tomcatbase:$DOCKER_TAG tomcatbase
 echo "Building Developer Docker"
-docker build -t craftercms/dev-full:$DOCKER_TAG dev-full
+docker build --no-cache=true -t craftercms/dev-full:$DOCKER_TAG dev-full
 echo "Building Authoring Prd"
-docker build -t craftercms/prod-authoring:$DOCKER_TAG prod-authoring
+docker build --no-cache=true -t craftercms/prod-authoring:$DOCKER_TAG prod-authoring
+echo "Building Delivery Prd"
+docker build  --no-cache=true -t craftercms/prod-delivery:$DOCKER_TAG prod-delivery

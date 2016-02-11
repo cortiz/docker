@@ -1,5 +1,5 @@
 #Base
-FROM craftercms/tomcatbase
+FROM craftercms/tomcatbase:unstable
 MAINTAINER Carlos Ortiz<carlos.ortiz@craftercms.org>
 #Set Container Envs
 ENV DATA_DB_PATH=$CRAFTER_HOME/data/db
@@ -15,14 +15,14 @@ ENV DEPLOYER_HOME=$CRAFTER_HOME/deployer
 WORKDIR ${CRAFTER_HOME}
 RUN mkdir -p data
 RUN mkdir -p ${DATA_REPO_PATH}
-ADD ./studio-conf/studio/server-config.properties /opt/craftercms/apache-tomcat/shared/classes/crafter/cstudio/extension/
-ADD ./studio-conf/studio/services-context.xml /opt/craftercms/apache-tomcat/shared/classes/crafter/cstudio/extension/
+ADD ./config/studio/server-config.properties $CATALINA_HOME/shared/classes/crafter/cstudio/extension/
+ADD ./config/studio/services-context.xml $CATALINA_HOME/shared/classes/crafter/cstudio/extension/
 
-ADD ./studio-conf/engine/server-config.properties /opt/craftercms/apache-tomcat/shared/classes/crafter/engine/extension/
-ADD ./studio-conf/engine/rendering-context.xml /opt/craftercms/apache-tomcat/shared/classes/crafter/engine/extension/
-ADD ./studio-conf/engine/services-context.xml /opt/craftercms/apache-tomcat/shared/classes/crafter/engine/extension/
+ADD ./config/engine/server-config.properties $CATALINA_HOME/shared/classes/crafter/engine/extension/
+ADD ./config/engine/rendering-context.xml $CATALINA_HOME/shared/classes/crafter/engine/extension/
+ADD ./config/engine/services-context.xml $CATALINA_HOME/shared/classes/crafter/engine/extension/
 
-ADD ./studio-conf/solr-crafter.xml /opt/craftercms/apache-tomcat/conf/Catalina/localhost/
+ADD ./config/solr-crafter.xml $CATALINA_HOME/conf/Catalina/localhost/
 
 #TODO Make this the proper ZIP file on next RELEASE
 ADD "$MAVEN_REPO_URL/service/local/artifact/maven/redirect?r=$MAVEN_REPO&g=org.craftercms&a=crafter-studio-publishing-receiver-zip&v=$CRAFTER_VERSION&p=zip" deployer.zip
@@ -43,11 +43,17 @@ RUN mkdir solr-crafter
 RUN cp -rf search/crafter-search-provider/solr/* solr-crafter/
 RUN rm -rf search
 
+#Make Sure we can override this later !
+RUN rm  /opt/craftercms/deployer/conf/*
+RUN mkdir -pv /opt/craftercms/deployer/target/site/content/
+ADD ./config/deployer/sample-target-context.xml /opt/craftercms/deployer/conf
+ADD ./config/deployer/preview-target-context.xml /opt/craftercms/deployer/conf
+
 VOLUME ${CRAFTER_HOME}/data
 VOLUME ${CRAFTER_HOME}/deployer/conf
 VOLUME ${CRAFTER_HOME}/deployer/target
 
 WORKDIR ${CRAFTER_HOME}
-ADD ./studio-conf/runStudio.sh /opt/craftercms/
+ADD ./config/runStudio.sh /opt/craftercms/
 #StartTomcat!!:
 CMD ["./runStudio.sh"]

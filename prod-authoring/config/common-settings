@@ -1,3 +1,4 @@
+
 LogLevel warn
 ErrorLog /opt/craftercms/logs/cractercms-apache-authoring.log
 ErrorDocument 500 /static-assets/error-pages/500.html
