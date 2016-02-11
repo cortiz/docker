@@ -1,14 +1,14 @@
 #Base
-FROM craftercms/tomcatbase:unstable
+FROM craftercms/tomcatbase
 MAINTAINER Carlos Ortiz<carlos.ortiz@craftercms.org>
 #Set Container Envs
 ENV DATA_DB_PATH=$CRAFTER_HOME/data/db
 ENV DATA_REPO_PATH=$CRAFTER_HOME/data/repo
 
-ENV CRAFTER_VERSION=LATEST
+ENV CRAFTER_VERSION=2.5.0
 ENV SOLR_VERSION=4.10.4
-ENV MAVEN_REPO_URL=https://oss.sonatype.org
-ENV MAVEN_REPO=snapshots
+ENV MAVEN_REPO_URL=http://repository.sonatype.org/
+ENV MAVEN_REPO=central-proxy
 ENV DEPLOYER_HOME=$CRAFTER_HOME/deployer
 #Change dir to CRAFTER_HOME
 
