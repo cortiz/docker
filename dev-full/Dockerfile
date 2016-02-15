@@ -1,5 +1,5 @@
 #Base
-FROM craftercms/tomcatbase:unstable
+    FROM craftercms/tomcatbase:snapshot
 MAINTAINER Carlos Ortiz<carlos.ortiz@craftercms.org>
 #Set Container Envs
 ENV DATA_DB_PATH=$CRAFTER_HOME/data/db

@@ -1,4 +1,4 @@
-FROM craftercms/prod-authoring:unstable
+FROM craftercms/prod-authoring:snapshot
 ENV BUILD_ON=201602111545crt
 #Cleanup base
 RUN rm /etc/apache2/sites-enabled/*

@@ -1,4 +1,4 @@
-FROM craftercms/dev-full:unstable
+FROM craftercms/dev-full:snapshot
 ENV BUILD_ON=201602101530crt
 RUN apt-get update
 RUN apt-get install -y --force-yes --no-install-recommends apache2
