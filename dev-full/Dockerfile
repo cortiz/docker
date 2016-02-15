@@ -54,10 +54,6 @@ VOLUME ${CRAFTER_HOME}/deployer/conf
 VOLUME ${CRAFTER_HOME}/deployer/target
 
 WORKDIR ${CRAFTER_HOME}
-<<<<<<< HEAD:dev-full/Dockerfile
 ADD ./config/runStudio.sh /opt/craftercms/
-=======
-ADD ./studio-conf/runStudio.sh ${CRAFTER_HOME}/runStudio.sh
->>>>>>> 18411dddcab85c3e16987dd082b1255f9ff24096:studio/Dockerfile
 #StartTomcat!!:
 CMD ["./runStudio.sh"]
