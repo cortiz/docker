@@ -1,4 +1,0 @@
-ProxyPreserveHost ON
-ProxyPass /static-assets !
-ProxyPass / ajp://localhost:8009/
-ProxyPassReverse / ajp://localhost:8009/
