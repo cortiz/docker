@@ -1,0 +1,1 @@
+export JAVA_OPTS=" -XX:MaxPermSize=512m -Xms2048m -Xmx4096m -XX:-DisableExplicitGC -Djava.awt.headless=true -server -Dcom.sun.management.jmxremote -XX:+AggressiveOpts -XX:+OptimizeStringConcat -XX:MinHeapFreeRatio=40 -XX:+UseG1GC $JAVA_OPTS"

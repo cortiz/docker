@@ -30,6 +30,7 @@ RUN mv search/crafter-search-provider/solr $CATALINA_HOME/solr-crafter
 ### Add updated deployer Config (for docker)
 RUN rm $CRAFTER_DEPLOYER_HOME/conf/*
 RUN mkdir -pv $CRAFTER_DEPLOYER_HOME/target/site/content/
+
 ADD ./config/deployer/sample-target-context.xml $CRAFTER_DEPLOYER_HOME/conf
 ADD ./config/deployer/preview-target-context.xml $CRAFTER_DEPLOYER_HOME/conf
 ADD ./config/deployerStart.sh $CRAFTER_DEPLOYER_HOME

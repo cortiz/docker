@@ -1,4 +1,4 @@
-#!/bin/bash
+#/bin/bash
 echo "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
 echo "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
 echo "MMMMMMMMMMMMMMMMMMMMMMWX0KNWWXkkKXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
@@ -39,13 +39,31 @@ echo "MMMMMMMMMMMMMMMMMMMMMMW0oc:lkOOdclx0XXNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 echo "MMMMMMMMMMMMMMMMMMMMMMMMNXKKNNNNXNNNNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
 echo "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
 echo "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
-VOLUME_HOME="/var/lib/mysql"
-if [[ ! -d $VOLUME_HOME/mysql ]]; then
-    echo "=> An empty or uninitialized MySQL volume is detected in $VOLUME_HOME"
-    echo "=> Installing MySQL ..."
-    mysql_install_db > /dev/null 2>&1
-    echo "=> Done!"
-    mysql 
-else
-    echo "=> Using an existing volume of MySQL"
+
+
+HTTP_DIR=$CRAFTER_DEPLOYER_HOME/target/site/content/
+DEPLOYER_FILE=$CRAFTER_DEPLOYER_HOME/conf/site-target-context.xml
+
+if [ ! -d "$HTTP_DIR" ]; then
+  if [ ! -L "$HTTP_DIR" ]; then
+    # It is a symlink!
+    # Symbolic link specific commands go here.
+     mkdir -pv $HTTP_DIR
+  else
+    # dir
+     mkdir -pv $HTTP_DIR
+  fi
 fi
+
+if [ ! -f "$DEPLOYER_FILE" ]; then
+  if [ ! -L "$DEPLOYER_FILE" ]; then
+    # It is a symlink!
+    # Symbolic link specific commands go here.
+    cp $TMP_PATH/site-target-context.xml $CRAFTER_DEPLOYER_HOME/conf/
+  else
+    # dir
+     cp $TMP_PATH/site-target-context.xml $CRAFTER_DEPLOYER_HOME/conf/
+  fi
+fi
+
+exec supervisord -c /etc/supervisor/supervisord.conf
