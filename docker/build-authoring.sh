@@ -1,1 +1,1 @@
-docker build --no-cache=true -t craftercms/authoring authoring
+docker build  -t craftercms/authoring authoring

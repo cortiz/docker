@@ -2,7 +2,7 @@ FROM ubuntu:xenial
 #Also uber.calderon@rivetlogic.com
 #Also luis.cerdas@rivetlogic.com
 MAINTAINER carlos.ortiz@craftersoftware.com
-RUN apt-get update && apt-get upgrade -y && apt-get install -y wget unzip git jsvc supervisor  2>/dev/null
+RUN apt-get update && apt-get upgrade -y && apt-get install -y wget unzip git jsvc supervisor nano  2>/dev/null
 
 ENV HOME=/home/crafter
 ENV CRAFTER_HOME=$HOME/craftercms
@@ -54,5 +54,6 @@ ADD ./config/supervisord.conf /etc/supervisor/conf.d/
 EXPOSE 8080
 EXPOSE 8009
 USER root
-#StartTomcat!!:
+WORKDIR $CRAFTER_HOME
+RUN chown -R crafter $CRAFTER_HOME/
 CMD ["supervisord","-c","/etc/supervisor/supervisord.conf"]
