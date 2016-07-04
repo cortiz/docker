@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 echo "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
 echo "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
 echo "MMMMMMMMMMMMMMMMMMMMMMWX0KNWWXkkKXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
@@ -49,9 +49,11 @@ if [ ! -d "$HTTP_DIR" ]; then
     # It is a symlink!
     # Symbolic link specific commands go here.
      mkdir -pv $HTTP_DIR
+     chown -R crafter.crafter $HTTP_DIR
   else
     # dir
      mkdir -pv $HTTP_DIR
+     chown -R crafter.crafter $HTTP_DIR
   fi
 fi
 
@@ -60,9 +62,11 @@ if [ ! -f "$DEPLOYER_FILE" ]; then
     # It is a symlink!
     # Symbolic link specific commands go here.
     cp $TMP_PATH/site-target-context.xml $CRAFTER_DEPLOYER_HOME/conf/
+    chown -R crafter.crafter $CRAFTER_DEPLOYER_HOME/conf/
   else
     # dir
      cp $TMP_PATH/site-target-context.xml $CRAFTER_DEPLOYER_HOME/conf/
+     chown -R crafter.crafter $CRAFTER_DEPLOYER_HOME/conf/
   fi
 fi
 

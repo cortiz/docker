@@ -1,2 +1,1 @@
-docker build --no-cache=true -t craftercms/local local
-
+docker build -t craftercms/local:snapshot local

@@ -1,1 +1,1 @@
-docker build  -t craftercms/authoring authoring
+docker build  -t craftercms/authoring:snapshot authoring

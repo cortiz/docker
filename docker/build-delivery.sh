@@ -1,1 +1,1 @@
-docker build -t craftercms/delivery delivery
+docker build -t craftercms/delivery:snapshot delivery

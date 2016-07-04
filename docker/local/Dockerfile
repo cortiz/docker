@@ -1,7 +1,5 @@
-FROM craftercms/base
-#Also uber.calderon@rivetlogic.com
-#Also luis.cerdas@rivetlogic.com
-MAINTAINER carlos.ortiz@craftersoftware.com
+FROM craftercms/base:snapshot
+MAINTAINER Carlos Ortiz <carlos.ortiz@craftersoftware.com> Uber Calderon <uber.calderon@rivetlogic.com> Luis Cerdas <luis.cerdas@rivetlogic.com>
 
 USER crafter
 
@@ -32,7 +30,6 @@ ADD ./config/deployer/preview-target-context.xml $CRAFTER_DEPLOYER_HOME/conf
 #x
 ADD ./config/deployerStart.sh $CRAFTER_DEPLOYER_HOME
 ADD ./config/deployerStop.sh $CRAFTER_DEPLOYER_HOME
-ADD ./config/runStudio.sh $CRAFTER_HOME/
 USER root
 ADD ./config/deployer-supervisor.conf /etc/supervisor/conf.d/
 RUN chown -R crafter $CRAFTER_HOME/

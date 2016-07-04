@@ -13,6 +13,7 @@ hs_err_pid*
 
 CrafterAuth/
 CrafterDelivery/
+CrafterDev/
 
 .DS_Store
 pid-*

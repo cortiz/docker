@@ -14,5 +14,5 @@ else
 	-v $DIR/CrafterAuth/apache2/:/etc/apache2/sites-enabled-ext/ \
 	-v $DIR/CrafterAuth/mysql:/var/lib/mysql/ \
 	-v $DIR/CrafterAuth/deployer/target:/home/crafter/craftercms/deployer/target \
-		craftercms/authoring>> $DIR/pid-authoring
+		craftercms/authoring:snapshot>> $DIR/pid-authoring
 fi

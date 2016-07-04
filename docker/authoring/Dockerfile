@@ -1,8 +1,5 @@
-FROM craftercms/base
-#Also uber.calderon@rivetlogic.com
-#Also luis.cerdas@rivetlogic.com
-MAINTAINER carlos.ortiz@craftersoftware.com
-
+FROM craftercms/base:snapshot
+MAINTAINER Carlos Ortiz <carlos.ortiz@craftersoftware.com> Uber Calderon <uber.calderon@rivetlogic.com> Luis Cerdas <luis.cerdas@rivetlogic.com>
 USER crafter
 
 ### Crafter Configs

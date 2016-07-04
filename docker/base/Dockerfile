@@ -1,7 +1,5 @@
 FROM ubuntu:xenial
-#Also uber.calderon@rivetlogic.com
-#Also luis.cerdas@rivetlogic.com
-MAINTAINER carlos.ortiz@craftersoftware.com
+MAINTAINER Carlos Ortiz <carlos.ortiz@craftersoftware.com> Uber Calderon <uber.calderon@rivetlogic.com> Luis Cerdas <luis.cerdas@rivetlogic.com>
 RUN apt-get update && apt-get upgrade -y && apt-get install -y wget unzip git jsvc supervisor nano  2>/dev/null
 
 ENV HOME=/home/crafter

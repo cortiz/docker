@@ -1,1 +1,1 @@
-docker build --no-cache=true -t craftercms/base base
+docker build -t craftercms/base:snapshot base

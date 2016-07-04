@@ -1,8 +1,5 @@
-FROM craftercms/base
-#Also uber.calderon@rivetlogic.com
-#Also luis.cerdas@rivetlogic.com
-MAINTAINER carlos.ortiz@craftersoftware.com
-
+FROM craftercms/base:snapshot
+MAINTAINER Carlos Ortiz <carlos.ortiz@craftersoftware.com> Uber Calderon <uber.calderon@rivetlogic.com> Luis Cerdas <luis.cerdas@rivetlogic.com>
 USER crafter
 
 ### Crafter Configs
@@ -63,9 +60,9 @@ VOLUME /etc/apache2/sites-enabled-ext
 RUN apt-get clean
 RUN rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 ADD ./config/init.sh $CRAFTER_HOME
-RUN chmod +x ./init.sh $CRAFTER_HOME
+RUN chmod +x $CRAFTER_HOME/init.sh
 
 ### 8080,8009 Already exported
 EXPOSE 80
 EXPOSE 443
-CMD ["$CRAFTER_HOME/init.sh"]
+CMD ["./init.sh"]
