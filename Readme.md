@@ -131,3 +131,8 @@ All files under /static-assets with in the $CRAFTER_HOME/www/ folder will be ser
 Note that /solr-crafter is restricted to localhost only.
 
 ## Additional Notes
+
+### Known issues.
+   1. Creating a new site in Local,Authoring based containers will result in a Crafter engine error soon after the crafter dashboard is loaded, this does not have any functional issue, clicking any page in the site tree will reveal the preview.
+
+   2. There is a Mysql Error while running for the first time a Authoring based container. This does not have any impact on how the container work and only shows up when the first time the container runs.
