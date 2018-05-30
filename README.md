@@ -25,9 +25,9 @@
      
 #### Creating a site 
 
-	1. Start or create the Crafter Delivery container.
-	2. Run docker exec -i -t CONTAINER_ID/CONTAINER_NAME /bin/bash
-. 	3. Follow [this instructions](https://docs.craftercms.org/en/3.0/system-administrators/activities/setup-site-for-delivery.html)
+1. Start or create the Crafter Delivery container.
+2. Run docker exec -i -t CONTAINER_ID/CONTAINER_NAME /bin/bash
+3. Follow [this instructions](https://docs.craftercms.org/en/3.0/system-administrators/activities/setup-site-for-delivery.html)
 
 ### Update a container 
 
@@ -48,7 +48,8 @@
 	docker stop CONTAINER_ID/CONTAINER_NAME
 	docker rm CONTAINER_ID/CONTAINER_NAME
 	docker run --detach  --publish 8080:8080 --publish --name crafterDelivery --restart always \
-	-v LOCAL_MNT:/opt/crafter/data cortiz/delivery··	
+	-v LOCAL_MNT:/opt/crafter/data cortiz/delivery··
+	
     
 **Note** You don't need to rerun the create site script.
 
