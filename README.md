@@ -28,11 +28,7 @@
 
 	1. Start or create the Crafter Delivery container.
 	2. Run
-	
-	```sh
 		docker exec -i -t CONTAINER_ID/CONTAINER_NAME /bin/bash
-	```
-	
 	3. Follow [https://docs.craftercms.org/en/3.0/system-administrators/activities/setup-site-for-delivery.html](this instructions)
 
 ### Update a container 
