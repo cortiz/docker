@@ -1,6 +1,0 @@
-# Common security settings for all Crafter CMS sites
-# [NC,PT,L]rotect critical A[NC,PT,L]I calls so as not to be reached from the outside
-RewriteRule ^/api/1/cache / [NC,PT,L]
-RewriteRule ^/api/1/site/mappings / [NC,PT,L]
-RewriteRule ^/api/1/site/cache / [NC,PT,L]
-RewriteRule ^/api/1/site/context/destroy / [NC,PT,L]
