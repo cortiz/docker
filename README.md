@@ -14,28 +14,33 @@
 ### Run a Container
 
 #### Authoring 
-    ```bash
+
+    ```
      docker run --detach  --publish 8080:8080 --publish --name crafterAuth --restart always \
      -v LOCAL_MNT:/opt/crafter/data cortiz/authoring
     ```
+    
 ### Delivery 
-    ```bash                                                                                                        
+    ```                                                                                                        
      docker run --detach  --publish 8080:8080 --publish --name crafterDelivery --restart always \                      
      -v LOCAL_MNT:/opt/crafter/data cortiz/delivery                                                           
      ```
 #### Creating a site 
 
 	1. Start or create the Crafter Delivery container.
-	2. Run 
-	```bash
+	2. Run
+	
+	```
 		docker exec -i -t CONTAINER_ID/CONTAINER_NAME /bin/bash
 	```
+	
 	3. Follow [https://docs.craftercms.org/en/3.0/system-administrators/activities/setup-site-for-delivery.html](this instructions)
 
 ### Update a container 
 
 #### Authoring
-	```bash
+
+	```
 	docker pull cortiz/authoring
 	docker stop CONTAINER_ID/CONTAINER_NAME
 	docker rm CONTAINER_ID/CONTAINER_NAME
@@ -44,14 +49,15 @@
 	``` 
 
 #### Delivery 
-	```bash
+	
+	```
 	docker pull cortiz/delivery
 	docker stop CONTAINER_ID/CONTAINER_NAME
 	docker rm CONTAINER_ID/CONTAINER_NAME
 	docker run --detach  --publish 8080:8080 --publish --name crafterDelivery --restart always \
 	-v LOCAL_MNT:/opt/crafter/data cortiz/delivery··
 	```
-*Note* You don't need to rerun the create.
+*Note* You don't need to rerun the create site script.
 
 ## Exposed Ports
 #### Authoring
