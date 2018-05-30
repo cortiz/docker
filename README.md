@@ -48,7 +48,7 @@
 	docker stop CONTAINER_ID/CONTAINER_NAME
 	docker rm CONTAINER_ID/CONTAINER_NAME
 	docker run --detach  --publish 8080:8080 --publish --name crafterDelivery --restart always \
-	-v LOCAL_MNT:/opt/crafter/data cortiz/delivery··
+	-v LOCAL_MNT:/opt/crafter/data cortiz/delivery
 	
     
 **Note** You don't need to rerun the create site script.
